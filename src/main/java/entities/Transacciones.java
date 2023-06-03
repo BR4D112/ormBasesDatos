@@ -8,28 +8,35 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-
 /**
  * @author Diego Alejandro Rubiano
  */
 @Entity(name = "TRANSACCIONES")
 @Table(name = "TRANSACCIONES")
 public class Transacciones {
+
     @Id
     @Column(name = "ID_TRANSACCION")
     private int id;
+
     @Column(name = "FECHA_TRANSACCION_DATE")
     private LocalDate fechaTransaccion;
+
     @Column(name = "TOTAL_TRANSACCION")
     private float totalTransaccion;
+
     @Column(name = "ESTADO_TRANSACCION")
     private ESTADO_TRANSACCION estadoTransaccion;
+
     @Column(name = "ID_PERSONA_VENDE")
     private int id_persVEN;
+
     @Column(name = "ID_PERSONA_ADQUIERE")
     private int idPersCOM;
+
     @Column(name = "COSTO_TRANSPORTE")
     private float costoTranspor;
+
     @Column(name = "CANTIDAD_UNID_PROD")
     private float cantidadUnidProd;
 
@@ -96,13 +103,27 @@ public class Transacciones {
     public void setCantidadUnidProd(float cantidadUnidProd) {
         this.cantidadUnidProd = cantidadUnidProd;
     }
-    public Transacciones createTransaccion(int idIn, CharSequence dateCharSeq, float totalTransIn, String estado){
+
+    public Transacciones createTransaccion(int idIn, CharSequence dateCharSeq, float totalTransIn, String estado, int idPersonavend, int idPersonaCom, float costoTransportIn, float cantidad_unid_prod) {
         Transacciones tempTrans = new Transacciones();
         tempTrans.setId(idIn);
         tempTrans.setFechaTransaccion(LocalDate.parse(dateCharSeq));
         tempTrans.setEstadoTransaccion(ESTADO_TRANSACCION.COMPRA.getEstadoTransWithString(estado));
+        if (idPersonaCom != 0) {
+            tempTrans.setIdPersCOM(idPersonaCom);
+        }
+        if (idPersonavend != 0) {
+            tempTrans.setId_persVEN(idPersonavend);
+        }
+        if (costoTransportIn != 0) {
+            tempTrans.setCostoTranspor(costoTransportIn);
+        }
+        if (cantidad_unid_prod != 0) {
+            tempTrans.setCantidadUnidProd(cantidad_unid_prod);
+        }
         return tempTrans;
     }
+
     public enum ESTADO_TRANSACCION {
         COMPRA("COM"),
         VENTA("VEN");
@@ -115,11 +136,13 @@ public class Transacciones {
         public String getValue() {
             return value;
         }
-        public boolean isInEstadoTrans(String value){
-            return Arrays.asList(ESTADO_TRANSACCION.values()).stream().map(a -> a.getValue()).anyMatch(a-> a.equals(value));
+
+        public boolean isInEstadoTrans(String value) {
+            return Arrays.asList(ESTADO_TRANSACCION.values()).stream().map(a -> a.getValue()).anyMatch(a -> a.equals(value));
         }
-        public ESTADO_TRANSACCION getEstadoTransWithString(String estado){
-            return Arrays.asList(ESTADO_TRANSACCION.values()).stream().filter(e-> e.getValue().equals(estado)).collect(Collectors.toList()).get(0);
+
+        public ESTADO_TRANSACCION getEstadoTransWithString(String estado) {
+            return Arrays.asList(ESTADO_TRANSACCION.values()).stream().filter(e -> e.getValue().equals(estado)).collect(Collectors.toList()).get(0);
         }
     }
 }
