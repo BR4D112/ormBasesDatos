@@ -1,6 +1,6 @@
 package manageTransaccion;
 
-import entities.Transacciones;
+import entities.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -13,12 +13,12 @@ public class ManageTransaccion {
 
     public SessionFactory initSesionfactory() {
         Configuration conf = new Configuration();
-        return conf.configure("hibernate.cfg.xml").addAnnotatedClass(Transacciones.class).buildSessionFactory();
+        return conf.configure("hibernate.cfg.xml").addAnnotatedClass(Lugar.class).addAnnotatedClass(Transacciones.class).addAnnotatedClass(Personas.class).buildSessionFactory();
     }
     private int idTransaccion;
 
     public ManageTransaccion() {
-        this.idTransaccion = 1;
+        this.idTransaccion = 2;
     }
 
     public void addTransaccion() {
@@ -26,11 +26,13 @@ public class ManageTransaccion {
         Session session = null;
         Transaction trx = null;
         Transacciones.ESTADO_TRANSACCION.COMPRA.isInEstadoTrans("");
-        aux = aux.createTransaccion(idTransaccion++, "", 0, Transacciones.ESTADO_TRANSACCION.COMPRA.value, 0, 0, 0, 0);
+        aux = aux.createTransaccion(idTransaccion++, "10-10-2023", 432, Transacciones.ESTADO_TRANSACCION.COMPRA.value, null, null, 0, 0);
+        System.out.println(aux.getFechaTransaccion());
         try {
             session = initSesionfactory().openSession();
             trx = session.beginTransaction();
             session.save(aux);
+            trx.commit();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

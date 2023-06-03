@@ -1,38 +1,58 @@
 package entities;
 
+import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.time.Instant;
 import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
+import java.util.Date;
+import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * @author Diego Alejandro Rubiano
  */
 @Entity(name = "TRANSACCIONES")
 @Table(name = "TRANSACCIONES")
-public class Transacciones {
+public class Transacciones implements Serializable {
+
+    public Transacciones() {
+    }
 
     @Id
     @Column(name = "ID_TRANSACCION")
     private int id;
 
     @Column(name = "FECHA_TRANSACCION_DATE")
-    private LocalDate fechaTransaccion;
+    @Temporal(TemporalType.DATE)
+    private Date fechaTransaccion;
 
     @Column(name = "TOTAL_TRANSACCION")
     private float totalTransaccion;
 
     @Column(name = "ESTADO_TRANSACCION")
-    private ESTADO_TRANSACCION estadoTransaccion;
+    private String estadoTransaccion;
 
-    @Column(name = "ID_PERSONA_VENDE")
-    private int id_persVEN;
+    @ManyToOne
+    @JoinColumn(name = "ID_PERSONA_VENDE", referencedColumnName = "ID_PERSONA", nullable = true)
+    private Personas personaVende;
 
-    @Column(name = "ID_PERSONA_ADQUIERE")
-    private int idPersCOM;
+    @ManyToOne
+    @JoinColumn(name = "ID_PERSONA_ADQUIERE", referencedColumnName = "ID_PERSONA", nullable = true)
+    private Personas personaCompra;
 
     @Column(name = "COSTO_TRANSPORTE")
     private float costoTranspor;
@@ -48,11 +68,11 @@ public class Transacciones {
         this.id = id;
     }
 
-    public LocalDate getFechaTransaccion() {
+    public Date getFechaTransaccion() {
         return fechaTransaccion;
     }
 
-    public void setFechaTransaccion(LocalDate fechaTransaccion) {
+    public void setFechaTransaccion(Date fechaTransaccion) {
         this.fechaTransaccion = fechaTransaccion;
     }
 
@@ -64,28 +84,28 @@ public class Transacciones {
         this.totalTransaccion = totalTransaccion;
     }
 
-    public ESTADO_TRANSACCION getEstadoTransaccion() {
+    public String getEstadoTransaccion() {
         return estadoTransaccion;
     }
 
-    public void setEstadoTransaccion(ESTADO_TRANSACCION estadoTransaccion) {
+    public void setEstadoTransaccion(String estadoTransaccion) {
         this.estadoTransaccion = estadoTransaccion;
     }
 
-    public int getId_persVEN() {
-        return id_persVEN;
+    public Personas getPersonaVende() {
+        return personaVende;
     }
 
-    public void setId_persVEN(int id_persVEN) {
-        this.id_persVEN = id_persVEN;
+    public void setPersonaVende(Personas personaVende) {
+        this.personaVende = personaVende;
     }
 
-    public int getIdPersCOM() {
-        return idPersCOM;
+    public Personas getPersonaCompra() {
+        return personaCompra;
     }
 
-    public void setIdPersCOM(int idPersCOM) {
-        this.idPersCOM = idPersCOM;
+    public void setPersonaCompra(Personas personaCompra) {
+        this.personaCompra = personaCompra;
     }
 
     public float getCostoTranspor() {
@@ -104,16 +124,18 @@ public class Transacciones {
         this.cantidadUnidProd = cantidadUnidProd;
     }
 
-    public Transacciones createTransaccion(int idIn, CharSequence dateCharSeq, float totalTransIn, String estado, int idPersonavend, int idPersonaCom, float costoTransportIn, float cantidad_unid_prod) {
+    public Transacciones createTransaccion(int idIn, String dateCharSeq, float totalTransIn, String estado, Personas personaCompraIN, Personas personaVendeIN, float costoTransportIn, float cantidad_unid_prod) {
         Transacciones tempTrans = new Transacciones();
         tempTrans.setId(idIn);
-        tempTrans.setFechaTransaccion(LocalDate.parse(dateCharSeq));
-        tempTrans.setEstadoTransaccion(ESTADO_TRANSACCION.COMPRA.getEstadoTransWithString(estado));
-        if (idPersonaCom != 0) {
-            tempTrans.setIdPersCOM(idPersonaCom);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        ZoneId defaultZoneId = ZoneId.systemDefault();
+        tempTrans.setFechaTransaccion(Date.from(LocalDate.parse(dateCharSeq, formatter).atStartOfDay(defaultZoneId).toInstant()));
+        tempTrans.setEstadoTransaccion(estado);
+        if (personaCompraIN != null) {
+            tempTrans.setPersonaCompra(personaCompraIN);
         }
-        if (idPersonavend != 0) {
-            tempTrans.setId_persVEN(idPersonavend);
+        if (personaVendeIN != null) {
+            tempTrans.setPersonaVende(personaVendeIN);
         }
         if (costoTransportIn != 0) {
             tempTrans.setCostoTranspor(costoTransportIn);
