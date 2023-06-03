@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.stream.Collectors;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 
@@ -14,7 +15,7 @@ import javax.persistence.Table;
 @Entity(name = "TRANSACCIONES")
 @Table(name = "TRANSACCIONES")
 public class Transacciones {
-
+    @Id
     @Column(name = "ID_TRANSACCION")
     private int id;
     @Column(name = "FECHA_TRANSACCION_DATE")
@@ -99,7 +100,7 @@ public class Transacciones {
         Transacciones tempTrans = new Transacciones();
         tempTrans.setId(idIn);
         tempTrans.setFechaTransaccion(LocalDate.parse(dateCharSeq));
-        tempTrans.setEstadoTransaccion(estadoTransaccion);
+        tempTrans.setEstadoTransaccion(ESTADO_TRANSACCION.COMPRA.getEstadoTransWithString(estado));
         return tempTrans;
     }
     public enum ESTADO_TRANSACCION {
@@ -117,7 +118,7 @@ public class Transacciones {
         public boolean isInEstadoTrans(String value){
             return Arrays.asList(ESTADO_TRANSACCION.values()).stream().map(a -> a.getValue()).anyMatch(a-> a.equals(value));
         }
-        public ESTADO_TRANSACCION getEstadoTrans(String estado){
+        public ESTADO_TRANSACCION getEstadoTransWithString(String estado){
             return Arrays.asList(ESTADO_TRANSACCION.values()).stream().filter(e-> e.getValue().equals(estado)).collect(Collectors.toList()).get(0);
         }
     }

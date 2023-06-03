@@ -14,10 +14,10 @@ public class TestEstadoClase {
         System.out.println(Transacciones.ESTADO_TRANSACCION.COMPRA.isInEstadoTrans("asdad")?"esta":"noesta");
         System.out.println(Transacciones.ESTADO_TRANSACCION.COMPRA.isInEstadoTrans("asd")?"esta":"noesta");
         
-        System.out.println(Transacciones.ESTADO_TRANSACCION.COMPRA.getEstadoTrans("COM"));
-        System.out.println(Transacciones.ESTADO_TRANSACCION.COMPRA.getEstadoTrans("VEN"));
-        System.out.println(Transacciones.ESTADO_TRANSACCION.COMPRA.getEstadoTrans("2asdas"));
-        System.out.println(Transacciones.ESTADO_TRANSACCION.COMPRA.getEstadoTrans("Vasd"));
+        System.out.println(Transacciones.ESTADO_TRANSACCION.COMPRA.getEstadoTransWithString("COM"));
+        System.out.println(Transacciones.ESTADO_TRANSACCION.COMPRA.getEstadoTransWithString("VEN"));
+        System.out.println(Transacciones.ESTADO_TRANSACCION.COMPRA.getEstadoTransWithString("2asdas"));
+        System.out.println(Transacciones.ESTADO_TRANSACCION.COMPRA.getEstadoTransWithString("Vasd"));
         
     }
 }
