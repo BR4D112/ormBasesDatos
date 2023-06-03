@@ -29,3 +29,5 @@ replay_pid*
 /dist/
 /nbdist/
 /.nb-gradle/
+target/maven-archiver/pom.properties
+*.lst
