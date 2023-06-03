@@ -1,1 +1,5 @@
 com\mycompany\orm_bases_datos_transacciones\ORM_bases_datos_transacciones.class
+entities\Transacciones$ESTADO_TRANSACCION.class
+manageTransaccion\ManageTransaccion.class
+entities\Producto.class
+entities\Transacciones.class
