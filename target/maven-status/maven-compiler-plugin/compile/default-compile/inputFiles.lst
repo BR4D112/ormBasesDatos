@@ -1,4 +1,17 @@
 D:\Github-D\ormBasesDatos\src\main\java\entities\Producto.java
+D:\Github-D\ormBasesDatos\src\main\java\gui\view\WelcomePanel.java
+D:\Github-D\ormBasesDatos\src\main\java\gui\view\InformationTransactionPanel.java
+D:\Github-D\ormBasesDatos\src\main\java\gui\view\ModifyTransactionPanel.java
+D:\Github-D\ormBasesDatos\src\main\java\gui\view\SelectTransactionIdPanel.java
+D:\Github-D\ormBasesDatos\src\main\java\gui\view\PromptText.java
 D:\Github-D\ormBasesDatos\src\main\java\entities\Transacciones.java
+D:\Github-D\ormBasesDatos\src\main\java\gui\view\DeleteTransactionPanel.java
 D:\Github-D\ormBasesDatos\src\main\java\com\mycompany\orm_bases_datos_transacciones\ORM_bases_datos_transacciones.java
+D:\Github-D\ormBasesDatos\src\main\java\gui\view\AddTransactionPanel.java
+D:\Github-D\ormBasesDatos\src\main\java\gui\Presenter\Presenter.java
+D:\Github-D\ormBasesDatos\src\main\java\entities\Personas.java
+D:\Github-D\ormBasesDatos\src\main\java\gui\view\SelectPanelTwo.java
+D:\Github-D\ormBasesDatos\src\main\java\entities\Lugar.java
+D:\Github-D\ormBasesDatos\src\main\java\gui\view\View.java
+D:\Github-D\ormBasesDatos\src\main\java\gui\view\ShowPanelFinish.java
 D:\Github-D\ormBasesDatos\src\main\java\manageTransaccion\ManageTransaccion.java

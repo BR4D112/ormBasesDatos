@@ -123,7 +123,17 @@ public class Transacciones implements Serializable {
     public void setCantidadUnidProd(float cantidadUnidProd) {
         this.cantidadUnidProd = cantidadUnidProd;
     }
+    public Date dateConvert(String date){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        ZoneId defaultZoneId = ZoneId.systemDefault();
+        return Date.from(LocalDate.parse(date, formatter).atStartOfDay(defaultZoneId).toInstant());
+    }
 
+    @Override
+    public String toString() {
+        return "Transacciones{" + "id=" + id + ", fechaTransaccion=" + fechaTransaccion + ", totalTransaccion=" + totalTransaccion + ", estadoTransaccion=" + estadoTransaccion + ", personaVende=" + personaVende + ", personaCompra=" + personaCompra + ", costoTranspor=" + costoTranspor + ", cantidadUnidProd=" + cantidadUnidProd + '}';
+    }
+    
     public Transacciones createTransaccion(int idIn, String dateCharSeq, float totalTransIn, String estado, Personas personaCompraIN, Personas personaVendeIN, float costoTransportIn, float cantidad_unid_prod) {
         Transacciones tempTrans = new Transacciones();
         tempTrans.setId(idIn);

@@ -69,6 +69,12 @@ public class Personas {
     public void setLugar(Lugar lugar) {
         this.lugar = lugar;
     }
+
+    @Override
+    public String toString() {
+        return "Personas{" + "idPersona=" + idPersona + ", nombrePersona=" + nombrePersona + ", numTelefonoPersona=" + numTelefonoPersona + ", tipoPersona=" + tipoPersona + ", lugar=" + lugar + '}';
+    }
+    
     
     
 }

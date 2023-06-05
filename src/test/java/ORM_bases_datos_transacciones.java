@@ -1,4 +1,4 @@
-package com.mycompany.orm_bases_datos_transacciones;
+
 
 import entities.Producto;
 import java.util.Iterator;
@@ -20,6 +20,8 @@ public class ORM_bases_datos_transacciones {
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
+            System.out.println(session.isOpen());
+            System.out.println(session.isConnected());
             List cargos = session.createQuery("from PRODUCTOS").list();
             for (Iterator iterator = cargos.iterator(); iterator.hasNext();) {
                 Producto prodGet = (Producto) iterator.next();
