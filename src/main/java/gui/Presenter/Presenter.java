@@ -21,6 +21,7 @@ public class Presenter implements ActionListener {
             case "Mostrar tabla de transacciones":
                 view.setDefaultAddTableTransactionPanelButton();
                 view.changePanel("showPanelFinish");
+                view.getShowPanelFinishDialog(this);
                 break;
             case "Modificar transacción":
                 view.setDefaultAddModifyTransactionPanelButton();
@@ -57,9 +58,5 @@ public class Presenter implements ActionListener {
             default:
                 break;
         }
-    }
-
-    public static void main(String[] args) {
-        new Presenter();
     }
 }

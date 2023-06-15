@@ -4,6 +4,7 @@ import java.awt.CardLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.util.Locale;
+import javax.swing.JDialog;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -36,7 +37,7 @@ public class View extends JFrame {
 
     public View(ActionListener listener) {
         super("INVENTARIO APP");
-        setSize(1000, 900);
+        setSize(1000, 750);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setResizable(false);
@@ -65,6 +66,10 @@ public class View extends JFrame {
 
     public ShowPanelFinish getShowPanelFinish() {
         return showPanelFinish;
+    }
+    
+    public JDialog getShowPanelFinishDialog(ActionListener listener) {
+        return showPanelFinish.getDialogBack(listener);
     }
 
     private void initPanels() {

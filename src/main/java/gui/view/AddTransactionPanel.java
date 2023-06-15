@@ -31,7 +31,7 @@ public class AddTransactionPanel extends JPanel {
     private JButton uploadTransactionButton, backButton;
 
     public AddTransactionPanel(ActionListener listener) {
-        this.setSize(1020, 900);
+        this.setSize(1020, 720);
         initComponents(listener);
     }
 
@@ -52,13 +52,13 @@ public class AddTransactionPanel extends JPanel {
         gbc_colorPanel.gridy = 0;
         add(colorPanel, gbc_colorPanel);
 
-        logoLabel = new JLabel("");
+        /*logoLabel = new JLabel("");
         logoLabel.setIcon(new ImageIcon("images/LogEmp.png"));
         GridBagConstraints gbc_logoLabel = new GridBagConstraints();
         gbc_logoLabel.insets = new Insets(10, 0, 5, 0);
         gbc_logoLabel.gridx = 0;
         gbc_logoLabel.gridy = 1;
-        add(logoLabel, gbc_logoLabel);
+        add(logoLabel, gbc_logoLabel);*/
 
         /*	ID	*/
         idTransaction = new JLabel("id Transacción");

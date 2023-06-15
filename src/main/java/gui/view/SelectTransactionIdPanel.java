@@ -100,6 +100,7 @@ public class SelectTransactionIdPanel extends JPanel {
         gbc_backButton.insets = new Insets(10, 0, 5, 0);
         gbc_backButton.gridx = 0;
         gbc_backButton.gridy = 5;
+        add(backButton, gbc_backButton);
     }
     public void setValue(ModifyTransactionPanel mtp){
         mtp.setValueIDTransaccion(idTransaccion);

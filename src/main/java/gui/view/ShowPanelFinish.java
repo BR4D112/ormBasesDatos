@@ -6,6 +6,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 import manageTransaccion.ManageTransaccion;
@@ -14,6 +15,7 @@ public class ShowPanelFinish extends JPanel {
 
     private static final long serialVersionUID = 1L;
     private JTable jTable;
+    private JButton backButton;
     // private Product product;
 
     // private InvoiceBody invoiceBody;
@@ -30,7 +32,23 @@ public class ShowPanelFinish extends JPanel {
     private void initComponents() {
         addTable();
     }
-
+    public JDialog getDialogBack(ActionListener listener){
+        JDialog dialogBack = new JDialog();
+        dialogBack.setSize(80, 80);
+        backButton = new JButton("Atras");
+        backButton.setActionCommand("Atrás1");
+        dialogBack.setLocationRelativeTo(null);
+        backButton.addActionListener(listener);
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               dialogBack.setVisible(false);
+            }
+        });
+        dialogBack.add(backButton);
+        dialogBack.show(true);
+        return dialogBack;
+    }
     private void addTable() {
         jTable = new JTable(0, 7);
         JScrollPane scrollPane = new JScrollPane(jTable);
@@ -41,6 +59,7 @@ public class ShowPanelFinish extends JPanel {
         add(scrollPane, BorderLayout.CENTER);
         jTable.repaint();
         loadData();
+        
     }
     public List<Transacciones> transacciones;
     private void tableHeader(JTableHeader header) {
@@ -102,5 +121,7 @@ public class ShowPanelFinish extends JPanel {
 //    public InvoiceBody getInvoiceBody() {
 //        return invoiceBody;
 //    }
+    
+   
 
 }

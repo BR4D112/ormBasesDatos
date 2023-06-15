@@ -67,7 +67,7 @@ public class ModifyTransactionPanel extends JPanel {
         gbc_logoLabel.gridy = 1;
         add(logoLabel, gbc_logoLabel);
 
-        idPersonaCompraLabel = new JLabel("ID / Código");
+        idPersonaCompraLabel = new JLabel("Costo transporte de la transacción");
         idPersonaCompraLabel.setFont(new Font("Ebrima", Font.PLAIN, 16));
         idPersonaCompraLabel.setForeground(new Color(128, 128, 128));
         GridBagConstraints gbc_idPersonaCompraLabel = new GridBagConstraints();
@@ -83,7 +83,7 @@ public class ModifyTransactionPanel extends JPanel {
         idPersonaCompra.setForeground(new Color(128, 128, 128));
         idPersonaCompra.setFont(new Font("Ebrima", Font.PLAIN, 16));
         idPersonaCompra.setBorder(new CompoundBorder(idPersonaCompra.getBorder(), new EmptyBorder(5, 0, 5, 0)));
-        idPersonaCompraPrompt = new PromptText("Ingrese el id de la persona que compra en la transacción", idPersonaCompra);
+        idPersonaCompraPrompt = new PromptText("Ingrese el costo del transporte de la transacción", idPersonaCompra);
         idPersonaCompraPrompt.changeStyle(Font.PLAIN);
         idPersonaCompraPrompt.changeAlpha(128);
         GridBagConstraints gbc_loginEmailUsernameField = new GridBagConstraints();
@@ -93,7 +93,7 @@ public class ModifyTransactionPanel extends JPanel {
         gbc_loginEmailUsernameField.gridy = 3;
         add(idPersonaCompra, gbc_loginEmailUsernameField);
 
-        idPersonaVendeLabel = new JLabel("ID / Código");
+        idPersonaVendeLabel = new JLabel("Unidades del producto en la transacción");
         idPersonaVendeLabel.setFont(new Font("Ebrima", Font.PLAIN, 16));
         idPersonaVendeLabel.setForeground(new Color(128, 128, 128));
         GridBagConstraints gbc_idPersonaVendeLabel = new GridBagConstraints();
@@ -109,7 +109,7 @@ public class ModifyTransactionPanel extends JPanel {
         idPersonaVende.setForeground(new Color(128, 128, 128));
         idPersonaVende.setFont(new Font("Ebrima", Font.PLAIN, 16));
         idPersonaVende.setBorder(new CompoundBorder(idPersonaCompra.getBorder(), new EmptyBorder(5, 0, 5, 0)));
-        idPersonaVendeLabelPrompt = new PromptText("Ingrese el id de la persona que vende en la transacción", idPersonaVende);
+        idPersonaVendeLabelPrompt = new PromptText("Ingrese las nuevas unidades del producto en la transacción", idPersonaVende);
         idPersonaVendeLabelPrompt.changeStyle(Font.PLAIN);
         idPersonaVendeLabelPrompt.changeAlpha(128);
         GridBagConstraints gbc_idPersonaVendeField = new GridBagConstraints();
